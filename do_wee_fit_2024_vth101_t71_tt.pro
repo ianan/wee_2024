@@ -1,4 +1,4 @@
-pro do_wee_fit_2024_vth52_tt
+pro do_wee_fit_2024_vth101_t71_tt
   compile_opt idl2
 
   ; Refitting everything so sure of what has actually been done!
@@ -8,9 +8,9 @@ pro do_wee_fit_2024_vth52_tt
   ; 05-Jul-2024 IGH
   ; ----------------------------------------
 
-  ; Want to use the older V5.2 version of CHIANTI in f_vth?
-  chianti_kev_common_load, contfile = 'chianti_cont_1_250_v52.sav', linefile = 'chianti_lines_1_10_v52.sav', /reload
-  fit_mod = 'vth52+tt'
+  ; Use the new v10.1 with 71 bins
+  chianti_kev_common_load, contfile = 'chianti_cont_1_250_unity_v101_t71.sav', linefile = 'chianti_lines_1_12_unity_v101_t71.sav', /reload
+  fit_mod = 'vth101(t71)+tt'
   restgen, file = 'mf_fin_newel.genx', resin
 
   ; v_th+thick2
@@ -104,12 +104,12 @@ pro do_wee_fit_2024_vth52_tt
     resout[i].chisq = o.get(/spex_summ_chisq)
     resout[i].fit_erange = o.get(/spex_erange)
 
-    if (i mod 50 eq 0) then savegen, file = 'wee_2024_vth52_tt.genx', resout
+    if (i mod 50 eq 0) then savegen, file = 'wee_2024_vth101_t71_tt.genx', resout
     ; close,/all,/force
     ; heap_gc
   endfor
 
-  savegen, file = 'wee_2024_vth52_tt.genx', resout
+  savegen, file = 'wee_2024_vth101_t71_tt.genx', resout
 
   stop
 end
